@@ -1,0 +1,176 @@
+TEST_DEPS = ["//:type_safe", ":catch2", ":test"]
+TEST_DEFINES = select({
+  "//:windows": ["TYPE_SAFE_TEST_NO_STATIC_ASSERT"],
+  "//conditions:default": [],
+})
+
+cc_library(
+    name = "catch2",
+    hdrs = ["@catch2_hpp//file"],
+    strip_include_prefix = "/external/catch2_hpp/file",
+)
+
+cc_library(
+    name = "test",
+    srcs = ["test.cpp"],
+    deps = [":catch2"],
+)
+
+cc_library(
+    name = "debugger_type",
+    hdrs = ["debugger_type.hpp"],
+)
+
+cc_test(
+    name = "arithmetic_policy",
+    srcs = ["arithmetic_policy.cpp"],
+    deps = TEST_DEPS,
+    defines = TEST_DEFINES,
+)
+
+cc_test(
+    name = "boolean",
+    srcs = ["boolean.cpp"],
+    deps = TEST_DEPS,
+    defines = TEST_DEFINES,
+)
+
+cc_test(
+    name = "bounded_type",
+    srcs = ["bounded_type.cpp"],
+    deps = TEST_DEPS,
+    defines = TEST_DEFINES,
+)
+
+cc_test(
+    name = "compact_optional",
+    srcs = ["compact_optional.cpp"],
+    deps = TEST_DEPS,
+    defines = TEST_DEFINES,
+)
+
+cc_test(
+    name = "constant_parser",
+    srcs = ["constant_parser.cpp"],
+    deps = TEST_DEPS,
+    defines = TEST_DEFINES,
+)
+
+cc_test(
+    name = "constrained_type",
+    srcs = ["constrained_type.cpp"],
+    deps = TEST_DEPS,
+    defines = TEST_DEFINES,
+)
+
+cc_test(
+    name = "deferred_construction",
+    srcs = ["deferred_construction.cpp"],
+    deps = TEST_DEPS,
+    defines = TEST_DEFINES,
+)
+
+cc_test(
+    name = "downcast",
+    srcs = ["downcast.cpp"],
+    deps = TEST_DEPS,
+    defines = TEST_DEFINES,
+)
+
+cc_test(
+    name = "flag",
+    srcs = ["flag.cpp"],
+    deps = TEST_DEPS,
+    defines = TEST_DEFINES,
+)
+
+cc_test(
+    name = "flag_set",
+    srcs = ["flag_set.cpp"],
+    deps = TEST_DEPS,
+    defines = TEST_DEFINES,
+)
+
+cc_test(
+    name = "floating_point",
+    srcs = ["floating_point.cpp"],
+    deps = TEST_DEPS,
+    defines = TEST_DEFINES,
+)
+
+cc_test(
+    name = "index",
+    srcs = ["index.cpp"],
+    deps = TEST_DEPS,
+    defines = TEST_DEFINES,
+)
+
+cc_test(
+    name = "integer",
+    srcs = ["integer.cpp"],
+    deps = TEST_DEPS,
+    defines = TEST_DEFINES,
+)
+
+cc_test(
+    name = "narrow_cast",
+    srcs = ["narrow_cast.cpp"],
+    deps = TEST_DEPS,
+    defines = TEST_DEFINES,
+)
+
+cc_test(
+    name = "optional",
+    srcs = ["optional.cpp"],
+    deps = TEST_DEPS + [":debugger_type"],
+    defines = TEST_DEFINES,
+)
+
+cc_test(
+    name = "optional_ref",
+    srcs = ["optional_ref.cpp"],
+    deps = TEST_DEPS + [":debugger_type"],
+    defines = TEST_DEFINES,
+)
+
+cc_test(
+    name = "output_parameter",
+    srcs = ["output_parameter.cpp"],
+    deps = TEST_DEPS,
+    defines = TEST_DEFINES,
+)
+
+cc_test(
+    name = "reference",
+    srcs = ["reference.cpp"],
+    deps = TEST_DEPS + [":debugger_type"],
+    defines = TEST_DEFINES,
+)
+
+cc_test(
+    name = "strong_typedef",
+    srcs = ["strong_typedef.cpp"],
+    deps = TEST_DEPS,
+    defines = TEST_DEFINES,
+)
+
+cc_test(
+    name = "tagged_union",
+    srcs = ["tagged_union.cpp"],
+    deps = TEST_DEPS + [":debugger_type"],
+    defines = TEST_DEFINES,
+)
+
+cc_test(
+    name = "variant",
+    srcs = ["variant.cpp"],
+    deps = TEST_DEPS + [":debugger_type"],
+    defines = TEST_DEFINES,
+)
+
+cc_test(
+    name = "visitor",
+    srcs = ["visitor.cpp"],
+    deps = TEST_DEPS,
+    defines = TEST_DEFINES,
+)

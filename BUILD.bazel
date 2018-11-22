@@ -1,0 +1,15 @@
+config_setting(
+    name = "windows",
+    values = {
+        "cpu": "x64_windows",
+    },
+    visibility = ["//:__subpackages__"],
+)
+
+cc_library(
+    name = "type_safe",
+    hdrs = glob(["include/**/*.hpp"]),
+    strip_include_prefix = "include",
+    deps = ["@com_github_zaucy_debug_assert//:debug_assert"],
+    visibility = ["//visibility:public"],
+)
